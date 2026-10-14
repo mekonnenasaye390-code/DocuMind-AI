@@ -1,0 +1,8 @@
+flask>=3.0,<4
+pypdf>=4.2
+cryptography>=42        # lets pypdf open AES-encrypted PDFs
+anthropic>=0.40         # only used when LLM_PROVIDER=anthropic
+requests>=2.31          # only used when LLM_PROVIDER=ollama
+python-dotenv>=1.0
+gunicorn>=22.0; platform_system != "Windows"
+waitress>=3.0; platform_system == "Windows"
