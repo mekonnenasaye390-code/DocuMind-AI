@@ -1,0 +1,172 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DocuMind AI helps you ask questions, summarize PDFs, and generate practice exams from your documents.">
+  <title>DocuMind AI — Document Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">D</div>
+        <div>
+          <strong>DocuMind AI</strong>
+          <small>Document workspace</small>
+        </div>
+      </div>
+
+      <div class="sidebar-label">WORKSPACE</div>
+
+      <button class="nav-item active" id="nav-chat">
+        ✦ <span>Ask your document</span>
+      </button>
+      <button class="nav-item" id="nav-summary">
+        ▤ <span>Summarize</span>
+      </button>
+      <button class="nav-item" id="nav-exam">
+        ☷ <span>Generate exam</span>
+      </button>
+
+      <div class="sidebar-bottom">
+        <div class="privacy-note">
+          <span class="dot"></span>
+          <div>
+            <strong>Private session</strong>
+            <small>Documents are held in server memory for this demo.</small>
+          </div>
+        </div>
+        <button class="clear-button" id="clear-doc">
+          Clear current document
+        </button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">YOUR KNOWLEDGE, ORGANIZED</div>
+          <h1>Document Assistant</h1>
+        </div>
+        <div class="status-pill">
+          <span class="dot"></span> AI workspace
+        </div>
+      </header>
+
+      <section class="upload-card" id="upload-card">
+        <div class="upload-icon">↑</div>
+        <div class="upload-copy">
+          <h2>Start with a document</h2>
+          <p>
+            Upload a text-based PDF to ask questions,
+            summarize it, or create a practice exam.
+          </p>
+        </div>
+
+        <form id="upload-form">
+          <input
+            type="file"
+            id="pdf-file"
+            accept="application/pdf,.pdf"
+            hidden
+          >
+          <button
+            type="button"
+            class="button button-primary"
+            id="choose-file"
+          >
+            Choose PDF
+          </button>
+          <span class="file-limit">PDF · up to 10 MB · 100 pages</span>
+        </form>
+
+        <div id="upload-status" class="upload-status" role="status"></div>
+      </section>
+
+      <section class="document-banner hidden" id="document-banner">
+        <div class="pdf-icon">PDF</div>
+        <div class="doc-meta">
+          <strong id="doc-name">Document.pdf</strong>
+          <small id="doc-details">Processed document</small>
+        </div>
+        <span class="ready-pill">Ready</span>
+      </section>
+
+      <section class="workspace" id="workspace">
+        <div class="welcome" id="welcome">
+          <div class="welcome-spark">✦</div>
+          <h2>What would you like to learn?</h2>
+          <p>
+            Upload a document and ask a question. Answers are based
+            on retrieved passages from your file.
+          </p>
+
+          <div class="suggestions">
+            <button
+              class="suggestion"
+              data-question="Summarize the main ideas in this document."
+            >
+              ✧ <span>Summarize the main ideas</span>
+            </button>
+
+            <button
+              class="suggestion"
+              data-question="What are the most important concepts I should study?"
+            >
+              ◎ <span>Find key concepts</span>
+            </button>
+
+            <button
+              class="suggestion"
+              data-question="Explain the most difficult concept in simple terms."
+            >
+              ⌘ <span>Explain a difficult concept</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="output"
+          class="output hidden"
+          aria-live="polite"
+        ></div>
+      </section>
+
+      <form id="chat-form" class="composer">
+        <textarea
+          id="question"
+          rows="1"
+          placeholder="Upload a PDF to start asking questions..."
+          maxlength="2000"
+          disabled
+        ></textarea>
+
+        <button
+          class="send-button"
+          type="submit"
+          id="send-button"
+          disabled
+          aria-label="Send question"
+        >
+          ↑
+        </button>
+
+        <div class="composer-foot">
+          <span>
+            AI can make mistakes. Verify important information
+            against the original document.
+          </span>
+          <span id="char-count">0 / 2000</span>
+        </div>
+      </form>
+
+      <div class="toast" id="toast" role="status"></div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
